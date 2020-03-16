@@ -1,0 +1,15 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  a.navbar-brand(href='#')= title
+  button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item
+        a.nav-link(href='/') Home 
+          span.sr-only (current)
+      li.nav-item
+        a.nav-link(href='/resources') Resources
+      li.nav-item
+        a.nav-link(href="#" data-toggle="modal" data-target="#myModal") Submit Report
+      li.nav-item
+        a.nav-link(href='/tos') Terms of Service

@@ -1,0 +1,54 @@
+#myModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='purchaseLabel' aria-hidden='false')
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h5.modal-title Coronavirus Awareness Form
+        button.close(type='button' data-dismiss='modal' aria-label='Close')
+          span(aria-hidden='true') &times;
+      .modal-body
+        form(action='/api/submit-report' method='post' name='post').needs-validation
+          label Location
+          
+          .form-row 
+            .col-7 
+              input(type="text" name="location-city" value=location && location.city placeholder="City" required).form-control
+            .col
+              input(type="text" name="location-region" value=location && location.region placeholder="Region" required).form-control
+            .col
+              input(type="text" name="location-country" value=location && location.country placeholder="Country" required).form-control
+
+          small.form-text.text-muted#locationHelp Note: we may show your location on the map based on GeoIP information, exact coordinates will be slightly randomized to hide your identity. Your IP will never be disclosed.
+
+          br
+          .form-group
+            label(for='input-age') Age
+            input(type='number' id='input-age' name="age" required).form-control
+          .form-group
+            label(for='symptoms') Symptoms
+            ul(style="list-style-type: none;")
+              each symptom, index in ["fatigue", "dry cough", "fever", "shortness of breath"]
+                li 
+                  input(type="checkbox" name="symptoms" value=symptom)
+                  label(for=symptom)= symptom 
+            
+          .form-group
+            label(for='testingstatus') Have you been tested for COVID-19?
+            select(id='testingstatus' name='testingstatus' required).form-control
+              option(value='yes positive') Yes - Positive 
+              option(value='yes negative') Yes - Negative 
+              option(value='yes waiting for results') Yes - Waiting for Results
+              option(value='no') no 
+          .form-group
+            label(for='contactstatus') Have you been in contact with someone with COVID-19?
+            select(id='contactstatus' name='contactstatus' required).form-control
+              option(value='yes') Yes
+              option(value='no') No 
+          
+          .form-group
+            label(for='additionalnotes')="Additonal notes "
+              small.text-muted (OPTIONAL)
+            input(type='textarea' name='additionalnotes' placeholder="Any additional notes you may like to share").form-control
+          .modal-footer
+            button.btn.btn-primary(type='submit') Post
+
+script(src='/js/form-validate.js')

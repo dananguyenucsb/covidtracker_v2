@@ -1,0 +1,38 @@
+extends layout.pug
+block scripts 
+  script(src='//maps.googleapis.com/maps/api/js?key=AIzaSyAsRuG0NnFmLNZlg6CWUTV8D2FA8gQo5xk&language=en&region=US' type='text/javascript')
+
+block content
+  .jumbotron.jumbotron-fluid
+    .container
+      h1.display-4 Self-report coronavirus exposure
+      p.lead
+        | This tool is intended as an unofficial resource with the goal of giving
+        | communities a sense of the spread of coronavirus and their exposure to it  
+
+  div.map#view-side 
+  script !{markersScript}
+  script(src="/js/map.js")
+  
+  table.table 
+    thead 
+      tr 
+        td ID 
+        td City 
+        td State 
+        td Age 
+        td Symptoms 
+        td Tested 
+        td In Contact 
+        td Posted Date 
+    tbody 
+      each aCase, index in cases 
+        tr 
+          td= index 
+          td= aCase.city 
+          td= aCase.region 
+          td= aCase.age 
+          td= aCase.symptoms 
+          td= aCase.tested 
+          td= aCase.incontact
+          td= aCase.created_at 

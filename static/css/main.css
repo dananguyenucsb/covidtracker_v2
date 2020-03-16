@@ -1,0 +1,10 @@
+.content {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+#view-side {
+  height: 400px;
+  width: 100%;
+  margin: 0;
+}
